@@ -1,0 +1,19 @@
+{
+    "name":"HAMqttDiscoveryHandler",
+    "description":"An Arduino library that generates MQTT topics and messages for Home Assistant MQTT Discovery.",
+    "keywords":"mqtt,wifi,iot,homeassistant",
+    "authors": [
+      {
+        "name": "Chen Yijun",
+        "maintainer": true
+      }
+    ],
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/cyijun/HAMqttDiscoveryHandler.git"
+    },
+    "version": "0.0.1",
+    "frameworks": "arduino",
+    "platforms": ["espressif8266", "espressif32"]
+  }
