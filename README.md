@@ -4,4 +4,4 @@ An Arduino library that generates MQTT topics and messages for Home Assistant MQ
 
 ## Release Note
 
-* 0.0.1: Sensor device type ready and has been tested!
+* v0.0.1: Sensor device type ready and has been tested!
