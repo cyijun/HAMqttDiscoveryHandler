@@ -1,3 +1,5 @@
+[![arduino-library-badge](https://www.ardu-badge.com/badge/HAMqttDiscoveryHandler.svg?)](https://www.ardu-badge.com/HAMqttDiscoveryHandler)
+
 
 # HAMqttDiscoveryHandler
 
