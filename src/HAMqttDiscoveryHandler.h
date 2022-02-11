@@ -52,6 +52,8 @@ private:
 
     void constructMqttDiscoveryMesg();
 
+    DeviceType _type;
+
     // init needed
     String _platform;
     String _serialNo;

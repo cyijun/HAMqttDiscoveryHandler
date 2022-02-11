@@ -66,7 +66,7 @@ void HAMqttDiscoveryHandler::constructMqttDiscoveryMesg()
 
     doc[UNIQUE_ID] = _uniqueId;
 
-    if (_deviceType.equals("sensor"))
+    if (_type == DeviceType::SENSOR)
     {
         doc[DEVICE_CLASS] = _deviceClass; //"temperature"
         doc[STATE_CLASS] = _stateClass;   //"measurement"
@@ -78,7 +78,7 @@ void HAMqttDiscoveryHandler::constructMqttDiscoveryMesg()
         doc[VALUE_TEMPLATE] = _valueTemplate; //"{{ value_json.temperature }}""
     }
 
-    if (_deviceType.equals("fan"))
+    if (_type == DeviceType::FAN)
     {
     }
 
@@ -147,6 +147,7 @@ void HAMqttDiscoveryHandler::setDeviceNameMin(String deviceNameMin)
 
 void HAMqttDiscoveryHandler::setDeviceType(DeviceType type)
 {
+    _type = type;
     _deviceType = deviceTypeToStr(type);
 }
 
