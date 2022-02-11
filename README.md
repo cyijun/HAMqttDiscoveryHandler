@@ -1,4 +1,3 @@
-[![Arduino Library Specification👌](https://github.com/cyijun/HAMqttDiscoveryHandler/actions/workflows/main.yml/badge.svg)](https://github.com/cyijun/HAMqttDiscoveryHandler/actions/workflows/main.yml)
 
 # HAMqttDiscoveryHandler
 
