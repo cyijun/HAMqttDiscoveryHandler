@@ -12,72 +12,42 @@
 #include "Arduino.h"
 #include <ArduinoJson.h>
 
+//#include "HAJsonKeyAbbr.h"
+#include "HAJsonKey.h"
+
 class HAMqttDiscoveryHandler
 {
 public:
-    enum DeviceType
-    {
-        ALARM_CONTROL_PANEL,
-        BINARY_SENSOR,
-        CAMERA,
-        COVER,
-        FAN,
-        LIGHT,
-        LOCK,
-        SENSOR,
-        SWITCH,
-        CLIMATE,
-        VACUUM
-    };
+    HAMqttDiscoveryHandler();
     HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion);
 
-    void generate();
-
+    String getPlatform();
+    String getDeviceName();
+    String getDeviceManufacturer();
+    String getDeviceModel();
+    String getDeviceSwVersion();
+    String getDeviceId();
     String getCmdTopic();
     String getCtrlTopic();
     String getStateTopic();
     String getAvailabilityTopic();
-    String getMqttDiscoveryConfigTopic();
-    String getMqttDiscoveryMesg();
 
-    void setDeviceClass(String deviceClass);
-    void setStateClass(String stateClass);
-    void setUnitOfMeasurement(String unitOfMeasurement);
-    void setValueTemplate(String valueTemplate);
-    void setDeviceNameMin(String deviceNameMin);
-    void setDeviceType(DeviceType type);
+protected:
 
-private:
-    String deviceTypeToStr(DeviceType type);
-
-    void constructMqttDiscoveryMesg();
-
-    DeviceType _type;
-
-    // init needed
+    // must be init
     String _platform;
-    String _serialNo;
+    String _deviceName;
     String _deviceManufacturer;
-    String _deviceType;
-
-    // need to be set
-    String _deviceClass;       // temperature
-    String _unitOfMeasurement; //"°C"
-    String _stateClass;        //"measurement"
-    String _valueTemplate;     //"{{ value_json.temperature }}""
-    String _deviceNameMin;
+    String _deviceModel;
+    String _deviceSwVersion;
 
     // can be generated
     String _deviceId;
-    String _deviceModel;
-    String _deviceName;
-    String _deviceSwVersion;
-    String _entityName;
-    String _uniqueId;
     String _availabilityTopic;
+    String _stateTopic;
+
+private:
     String _cmdTopic;
     String _ctrlTopic;
-    String _stateTopic;
-    String _mqttDiscoveryConfigTopic;
-    String _mqttDiscoveryMesg;
+
 };

@@ -4,13 +4,13 @@
 #######################################
 
 HAMqttDiscoveryHandler	KEYWORD1
-DeviceType	KEYWORD1
+HAMqttDiscoverySensor	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-generate	KEYWORD2
+construct	KEYWORD2
 
 getCmdTopic	KEYWORD2
 getCtrlTopic	KEYWORD2
@@ -18,10 +18,3 @@ getStateTopic	KEYWORD2
 getAvailabilityTopic	KEYWORD2
 getMqttDiscoveryConfigTopic	KEYWORD2
 getMqttDiscoveryMesg	KEYWORD2
-
-setDeviceClass	KEYWORD2
-setStateClass	KEYWORD2
-setUnitOfMeasurement	KEYWORD2
-setValueTemplate	KEYWORD2
-setDeviceNameMin	KEYWORD2
-setDeviceType	KEYWORD2
