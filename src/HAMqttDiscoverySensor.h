@@ -1,42 +1,56 @@
+/**
+ * @file HAMqttDiscoverySensor.h
+ * @author Chen Yijun
+ * @brief
+ * @version 0.1
+ * @date 2022-02-12
+ *
+	Copyright (C) 2022  Chen Yijun
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
 #include "HAMqttDiscoveryHandler.h"
 
 class HAMqttDiscoverySensor : public HAMqttDiscoveryHandler
 {
 
 public:
-    /**
-     * @brief Construct a new HAMqttDiscoverySensor object
-     *
-     * @param deviceObj
-     * @param stateClass
-     * @param deviceNameMin
-     * @param deviceClass
-     * @param unitOfMeasurement
-     * @param valueTemplate
-     */
-    HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate);
-    void construct();
+	HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate);
+	void construct();
 
-    void setDeviceClass(String deviceClass);
-    void setStateClass(String stateClass);
-    void setUnitOfMeasurement(String unitOfMeasurement);
-    void setValueTemplate(String valueTemplate);
-    void setDeviceNameMin(String deviceNameMin);
+	void setDeviceClass(String deviceClass);
+	void setStateClass(String stateClass);
+	void setUnitOfMeasurement(String unitOfMeasurement);
+	void setValueTemplate(String valueTemplate);
+	void setDeviceNameMin(String deviceNameMin);
 
-    String getMqttDiscoveryConfigTopic();
-    String getMqttDiscoveryMesg();
+	String getMqttDiscoveryConfigTopic();
+	String getMqttDiscoveryMesg();
 
 private:
-    const String _deviceType = "sensor";
+	const String _deviceType = "sensor";
 
-    String _deviceClass;
-    String _unitOfMeasurement;
-    String _stateClass;
-    String _valueTemplate;
-    String _deviceNameMin;
+	String _deviceClass;
+	String _unitOfMeasurement;
+	String _stateClass;
+	String _valueTemplate;
+	String _deviceNameMin;
 
-    String _uniqueId;
-    String _entityName;
-    String _mqttDiscoveryConfigTopic;
-    String _mqttDiscoveryMesg;
+	String _uniqueId;
+	String _entityName;
+	String _mqttDiscoveryConfigTopic;
+	String _mqttDiscoveryMesg;
 };
