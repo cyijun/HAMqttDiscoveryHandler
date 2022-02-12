@@ -2,7 +2,7 @@
 
 # HAMqttDiscoveryHandler
 
-An Arduino library that generates MQTT topics and messages for Home Assistant MQTT Discovery. It can gracefully handle the case of multiple entities of different types in one device, because it's OO.
+An Arduino library that generates MQTT topics and messages for Home Assistant MQTT Discovery. This library is to simplify adding DIY hardware to Home Assistant by MQTT Discovery. Its OO feature makes it can handle complex cases like multiple entities of different types in one device.
 
 ## TBD
 
