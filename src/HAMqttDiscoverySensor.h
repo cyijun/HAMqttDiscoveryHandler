@@ -28,6 +28,7 @@ class HAMqttDiscoverySensor : public HAMqttDiscoveryHandler
 {
 
 public:
+	HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj);
 	HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate);
 	void construct();
 

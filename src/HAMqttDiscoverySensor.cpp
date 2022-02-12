@@ -23,6 +23,17 @@
  */
 
 #include "HAMqttDiscoverySensor.h"
+HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj)
+{
+	_platform = deviceObj.getPlatform();
+	_deviceName = deviceObj.getDeviceName();
+	_deviceManufacturer = deviceObj.getDeviceManufacturer();
+	_deviceModel = deviceObj.getDeviceModel();
+	_deviceSwVersion = deviceObj.getDeviceSwVersion();
+	_deviceId = deviceObj.getDeviceId();
+	_stateTopic = deviceObj.getStateTopic();
+	_availabilityTopic = deviceObj.getAvailabilityTopic();
+}
 
 HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate)
 {
@@ -34,6 +45,11 @@ HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, 
 	_deviceId = deviceObj.getDeviceId();
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
+	_stateClass = stateClass;
+	_deviceNameMin = deviceNameMin;
+	_deviceClass = deviceClass;
+	_unitOfMeasurement = unitOfMeasurement;
+	_valueTemplate = valueTemplate;
 }
 
 void HAMqttDiscoverySensor::construct()
