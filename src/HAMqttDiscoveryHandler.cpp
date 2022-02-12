@@ -39,6 +39,7 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_cmdTopic = _platform + "/" + _deviceName + "/cmd";
 	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
+	_feedbackTopic = _platform + "/" + _deviceName + "/fdbk";
 	_availabilityTopic = _platform + "/" + _deviceName + "/state";
 }
 
@@ -88,4 +89,9 @@ String HAMqttDiscoveryHandler::getStateTopic()
 String HAMqttDiscoveryHandler::getAvailabilityTopic()
 {
 	return _availabilityTopic;
+}
+
+String HAMqttDiscoveryHandler::getFeedbackTopic()
+{
+	return _feedbackTopic;
 }

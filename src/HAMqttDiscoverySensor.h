@@ -32,14 +32,14 @@ public:
 	HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate);
 	void construct();
 
+	String getMqttDiscoveryConfigTopic();
+	String getMqttDiscoveryMesg();
+
 	void setDeviceClass(String deviceClass);
 	void setStateClass(String stateClass);
 	void setUnitOfMeasurement(String unitOfMeasurement);
 	void setValueTemplate(String valueTemplate);
 	void setDeviceNameMin(String deviceNameMin);
-
-	String getMqttDiscoveryConfigTopic();
-	String getMqttDiscoveryMesg();
 
 private:
 	const String _deviceType = "sensor";
