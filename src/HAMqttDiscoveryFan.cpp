@@ -79,6 +79,29 @@ void HAMqttDiscoveryFan::construct()
 		doc[_SPEED_RANGE_MAX] = _speedRangeMax;
 	}
 
+	if (!_stateValueTemplate.isEmpty())
+	{
+		doc[_STATE_TOPIC] = _feedbackTopic;
+		doc[_STATE_VALUE_TEMPLATE] = _stateValueTemplate;
+	}
+
+	if (!_oscillationValueTemplate.isEmpty())
+	{
+		doc[_OSCILLATION_STATE_TOPIC] = _feedbackTopic;
+		doc[_OSCILLATION_VALUE_TEMPLATE] = _oscillationValueTemplate;
+	}
+	if (!_percentageValueTemplate.isEmpty())
+	{
+		doc[_PERCENTAGE_STATE_TOPIC] = _feedbackTopic;
+		doc[_PERCENTAGE_VALUE_TEMPLATE] = _percentageValueTemplate;
+	}
+
+	if (!_presetModeValueTemplate.isEmpty())
+	{
+		doc[_PERCENTAGE_STATE_TOPIC] = _feedbackTopic;
+		doc[_PRESET_MODE_VALUE_TEMPLATE] = _presetModeValueTemplate;
+	}
+
 	serializeJson(doc, _mqttDiscoveryMesg);
 }
 

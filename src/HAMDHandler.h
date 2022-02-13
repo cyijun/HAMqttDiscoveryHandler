@@ -25,3 +25,4 @@
 
 #include "HAMqttDiscoverySensor.h"
 #include "HAMqttDiscoveryFan.h"
+#include "HAMqttDiscoveryLight.h"

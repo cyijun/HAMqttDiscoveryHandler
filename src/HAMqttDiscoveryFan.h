@@ -44,4 +44,10 @@ private:
 	String _presetModes[10];
 	String _speedRangeMin;
 	String _speedRangeMax;
+
+	
+	String _stateValueTemplate
+	String _oscillationValueTemplate
+	String _percentageValueTemplate
+	String _presetModeValueTemplate
 };
