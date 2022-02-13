@@ -9,6 +9,8 @@
  *
  */
 
+#pragma once
+
 #include "HAMqttDiscoveryHandler.h"
 
 class HAMqttDiscoveryFan : public HAMqttDiscoveryHandler
@@ -45,9 +47,8 @@ private:
 	String _speedRangeMin;
 	String _speedRangeMax;
 
-	
-	String _stateValueTemplate
-	String _oscillationValueTemplate
-	String _percentageValueTemplate
-	String _presetModeValueTemplate
+	String _stateValueTemplate;
+	String _oscillationValueTemplate;
+	String _percentageValueTemplate;
+	String _presetModeValueTemplate;
 };

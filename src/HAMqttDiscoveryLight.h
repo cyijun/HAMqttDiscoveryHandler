@@ -9,19 +9,22 @@
  * 
  */
 
+#pragma once
+
 #include "HAMqttDiscoveryHandler.h"
 
-class HAMqttDiscoveryFan : public HAMqttDiscoveryHandler
+class HAMqttDiscoveryLight : public HAMqttDiscoveryHandler
 {
 public:
-	HAMqttDiscoveryFan(HAMqttDiscoveryHandler &deviceObj);
+	HAMqttDiscoveryLight(HAMqttDiscoveryHandler &deviceObj);
 	void construct();
 
 	String getMqttDiscoveryConfigTopic();
 	String getMqttDiscoveryMesg();
 
 	void setDeviceNameMin(String deviceNameMin);
-	void setCommandTemplate(String commandTemplate);
+	void setCommandOnTemplate(String commandOnTemplate);
+	void setCommandOffTemplate(String commandOffTemplate);
 	
 
 private:
@@ -33,6 +36,9 @@ private:
 	String _mqttDiscoveryMesg;
 
 	String _deviceNameMin;
-	String _commandTemplate;
-	
+
+	String _commandOnTemplate;
+	String _commandOffTemplate;
+
+	String _stateTemplate;
 };
