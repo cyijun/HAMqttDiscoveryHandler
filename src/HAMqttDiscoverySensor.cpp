@@ -33,6 +33,7 @@ HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj)
 	_deviceId = deviceObj.getDeviceId();
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
+	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 }
 
 HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate)
@@ -45,6 +46,7 @@ HAMqttDiscoverySensor::HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, 
 	_deviceId = deviceObj.getDeviceId();
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
+	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 	_stateClass = stateClass;
 	_deviceNameMin = deviceNameMin;
 	_deviceClass = deviceClass;
@@ -59,13 +61,7 @@ void HAMqttDiscoverySensor::construct()
 	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceType + "/" + _deviceName + "/" + _deviceNameMin + "/config";
 
 	DynamicJsonDocument doc(1024);
-	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
-	JsonObject device = doc.createNestedObject(_DEVICE);
-	device[_IDENTIFIERS][0] = _deviceId;
-	device[_MANUFACTURER] = _deviceManufacturer;
-	device[_MODEL] = _deviceModel;
-	device[_NAME] = _deviceName;
-	device[_SW_VERSION] = _deviceSwVersion;
+	deserializeJson(doc, _mqttDiscoveryMesgBase);
 	doc[_JSON_ATTRIBUTES_TOPIC] = _stateTopic;
 	doc[_NAME] = _entityName;
 	doc[_UNIQUE_ID] = _uniqueId;

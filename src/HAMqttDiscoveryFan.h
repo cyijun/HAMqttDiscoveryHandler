@@ -9,8 +9,6 @@
  *
  */
 
-#pragma once
-
 #include "HAMqttDiscoveryHandler.h"
 
 class HAMqttDiscoveryFan : public HAMqttDiscoveryHandler
@@ -28,7 +26,12 @@ public:
 	void setPercentageCommandTemplate(String percentageCommandTemplate);
 	void setPresetModeCommandTemplate(String presetModeCommandTemplate);
 	void setPresetModes(String presetModes[10]);
-	void setSpeedRangeMin(String speedRangeMin);
+	void setSpeedRangeMin(int speedRangeMin);
+	void setSpeedRangeMax(int speedRangeMax);
+	void setStateValueTemplate(String stateValueTemplate);
+	void setOscillationValueTemplate(String oscillationValueTemplate);
+	void setPercentageValueTemplate(String percentageValueTemplate);
+	void setPresetModeValueTemplate(String presetModeValueTemplate);
 
 private:
 	const String _deviceType = "fan";
@@ -44,8 +47,8 @@ private:
 	String _percentageCommandTemplate;
 	String _presetModeCommandTemplate;
 	String _presetModes[10];
-	String _speedRangeMin;
-	String _speedRangeMax;
+	int _speedRangeMin = -1;
+	int _speedRangeMax = -1;
 
 	String _stateValueTemplate;
 	String _oscillationValueTemplate;

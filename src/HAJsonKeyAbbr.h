@@ -258,7 +258,7 @@
 #define _TILT_OPTIMISTIC "tilt_opt"
 #define _TILT_STATUS_TOPIC "tilt_status_t"
 #define _TILT_STATUS_TEMPLATE "tilt_status_tpl"
-#define _TOPIC "t"
+#define _TOPIC "topic"
 #define _UNIQUE_ID "uniq_id"
 #define _UNIT_OF_MEASUREMENT "unit_of_meas"
 #define _VALUE_TEMPLATE "val_tpl"
@@ -278,3 +278,4 @@
 #define _MODEL "mdl"
 #define _SW_VERSION "sw"
 #define _SUGGESTED_AREA "sa"
+#define _VIA_DEVICE "via_device"

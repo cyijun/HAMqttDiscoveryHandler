@@ -41,6 +41,45 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
 	_feedbackTopic = _platform + "/" + _deviceName + "/fdbk";
 	_availabilityTopic = _platform + "/" + _deviceName + "/state";
+
+	DynamicJsonDocument doc(1024);
+	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
+	JsonObject device = doc.createNestedObject(_DEVICE);
+	device[_IDENTIFIERS][0] = _deviceId;
+	device[_MANUFACTURER] = _deviceManufacturer;
+	device[_MODEL] = _deviceModel;
+	device[_NAME] = _deviceName;
+	device[_SW_VERSION] = _deviceSwVersion;
+	serializeJson(doc, _mqttDiscoveryMesgBase);
+}
+
+HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, String viaDevice)
+{
+	_platform = platform;
+	_platform.toLowerCase();
+	_deviceName = serialNo;
+	_deviceName.toLowerCase();
+	_deviceManufacturer = deviceManufacturer;
+	_deviceModel = deviceModel;
+	_deviceSwVersion = deviceSwVersion;
+	_viaDevice = viaDevice;
+	_deviceId = _platform + "_" + _deviceName;
+	_cmdTopic = _platform + "/" + _deviceName + "/cmd";
+	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
+	_stateTopic = _platform + "/" + _deviceName + "/attr";
+	_feedbackTopic = _platform + "/" + _deviceName + "/fdbk";
+	_availabilityTopic = _platform + "/" + _deviceName + "/state";
+
+	DynamicJsonDocument doc(1024);
+	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
+	JsonObject device = doc.createNestedObject(_DEVICE);
+	device[_IDENTIFIERS][0] = _deviceId;
+	device[_MANUFACTURER] = _deviceManufacturer;
+	device[_MODEL] = _deviceModel;
+	device[_NAME] = _deviceName;
+	device[_SW_VERSION] = _deviceSwVersion;
+	device[_VIA_DEVICE] = _viaDevice;
+	serializeJson(doc, _mqttDiscoveryMesgBase);
 }
 
 //********* Getters *********
@@ -94,4 +133,8 @@ String HAMqttDiscoveryHandler::getAvailabilityTopic()
 String HAMqttDiscoveryHandler::getFeedbackTopic()
 {
 	return _feedbackTopic;
+}
+String HAMqttDiscoveryHandler::getMqttDiscoveryMesgBase()
+{
+	return _mqttDiscoveryMesgBase;
 }

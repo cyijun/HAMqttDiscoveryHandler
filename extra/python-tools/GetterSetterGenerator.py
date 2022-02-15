@@ -2,7 +2,7 @@ import linecache
 
 
 className = 'HAMqttDiscoveryFan'
-lineRange = [39, 46]
+lineRange = [51, 54]
 
 needGetter = False
 needSetter = True
@@ -17,7 +17,7 @@ fp = './'+className+'.h'
 
 
 paramList = []
-for line in range(lineRange[0], lineRange[1]):
+for line in range(lineRange[0], lineRange[1]+1):
     lineStr = get_line_context(fp, line)
     paramList.append(lineStr[lineStr.find(' '):lineStr.find(';')])
 

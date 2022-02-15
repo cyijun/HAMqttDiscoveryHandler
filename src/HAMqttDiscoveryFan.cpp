@@ -22,6 +22,8 @@ HAMqttDiscoveryFan::HAMqttDiscoveryFan(HAMqttDiscoveryHandler &deviceObj)
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
 	_feedbackTopic = deviceObj.getFeedbackTopic();
+	_ctrlTopic = deviceObj.getCtrlTopic();
+	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 }
 
 void HAMqttDiscoveryFan::construct()
@@ -31,14 +33,8 @@ void HAMqttDiscoveryFan::construct()
 	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceType + "/" + _deviceName + "/" + _deviceNameMin + "/config";
 
 	DynamicJsonDocument doc(1024);
-	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
-	JsonObject device = doc.createNestedObject(_DEVICE);
-	device[_IDENTIFIERS][0] = _deviceId;
-	device[_MANUFACTURER] = _deviceManufacturer;
-	device[_MODEL] = _deviceModel;
-	device[_NAME] = _deviceName;
-	device[_SW_VERSION] = _deviceSwVersion;
-	doc[_JSON_ATTRIBUTES_TOPIC] = _stateTopic;
+	deserializeJson(doc, _mqttDiscoveryMesgBase);
+	doc[_JSON_ATTRIBUTES_TOPIC] = _feedbackTopic;
 	doc[_NAME] = _entityName;
 	doc[_UNIQUE_ID] = _uniqueId;
 
@@ -69,12 +65,12 @@ void HAMqttDiscoveryFan::construct()
 		}
 	}
 
-	if (!_speedRangeMin.isEmpty())
+	if (!(_speedRangeMin==-1))
 	{
 		doc[_SPEED_RANGE_MIN] = _speedRangeMin;
 	}
 
-	if (!_speedRangeMax.isEmpty())
+	if (!(_speedRangeMax==-1))
 	{
 		doc[_SPEED_RANGE_MAX] = _speedRangeMax;
 	}
@@ -149,7 +145,28 @@ void HAMqttDiscoveryFan::setPresetModes(String presetModes[10])
 			_presetModes[i] = presetModes[i];
 	}
 }
-void HAMqttDiscoveryFan::setSpeedRangeMin(String speedRangeMin)
+void HAMqttDiscoveryFan::setSpeedRangeMin(int speedRangeMin)
 {
 	_speedRangeMin = speedRangeMin;
+}
+
+void HAMqttDiscoveryFan::setSpeedRangeMax(int speedRangeMax)
+{
+	_speedRangeMax = speedRangeMax;
+}
+void HAMqttDiscoveryFan::setStateValueTemplate(String stateValueTemplate)
+{
+	_stateValueTemplate = stateValueTemplate;
+}
+void HAMqttDiscoveryFan::setOscillationValueTemplate(String oscillationValueTemplate)
+{
+	_oscillationValueTemplate = oscillationValueTemplate;
+}
+void HAMqttDiscoveryFan::setPercentageValueTemplate(String percentageValueTemplate)
+{
+	_percentageValueTemplate = percentageValueTemplate;
+}
+void HAMqttDiscoveryFan::setPresetModeValueTemplate(String presetModeValueTemplate)
+{
+	_presetModeValueTemplate = presetModeValueTemplate;
 }

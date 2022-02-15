@@ -277,3 +277,4 @@
 #define _MODEL "model"
 #define _SW_VERSION "sw_version"
 #define _SUGGESTED_AREA "suggested_area"
+#define _VIA_DEVICE "via_device"

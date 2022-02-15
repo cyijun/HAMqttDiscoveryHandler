@@ -22,6 +22,8 @@ HAMqttDiscoveryLight::HAMqttDiscoveryLight(HAMqttDiscoveryHandler &deviceObj)
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
 	_feedbackTopic = deviceObj.getFeedbackTopic();
+	_ctrlTopic = deviceObj.getCtrlTopic();
+	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 }
 
 void HAMqttDiscoveryLight::construct()
@@ -31,22 +33,22 @@ void HAMqttDiscoveryLight::construct()
 	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceType + "/" + _deviceName + "/" + _deviceNameMin + "/config";
 
 	DynamicJsonDocument doc(1024);
-	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
-	JsonObject device = doc.createNestedObject(_DEVICE);
-	device[_IDENTIFIERS][0] = _deviceId;
-	device[_MANUFACTURER] = _deviceManufacturer;
-	device[_MODEL] = _deviceModel;
-	device[_NAME] = _deviceName;
-	device[_SW_VERSION] = _deviceSwVersion;
-	doc[_JSON_ATTRIBUTES_TOPIC] = _stateTopic;
+	deserializeJson(doc, _mqttDiscoveryMesgBase);
+	doc[_JSON_ATTRIBUTES_TOPIC] = _feedbackTopic;
 	doc[_NAME] = _entityName;
 	doc[_UNIQUE_ID] = _uniqueId;
 
+	doc[_COMMAND_TOPIC] = _ctrlTopic;
 	if (!_commandOnTemplate.isEmpty())
 	{
-		doc[_COMMAND_TOPIC] = _ctrlTopic;
 		doc[_COMMAND_ON_TEMPLATE] = _commandOnTemplate;
 		doc[_COMMAND_OFF_TEMPLATE] = _commandOffTemplate;
+	}
+
+	if (!_payloadOn.isEmpty())
+	{
+		doc[_PAYLOAD_ON] = _payloadOn;
+		doc[_PAYLOAD_OFF] = _payloadOff;
 	}
 
 	if (!_stateTemplate.isEmpty())
@@ -78,6 +80,14 @@ void HAMqttDiscoveryLight::setDeviceNameMin(String deviceNameMin)
 {
 	_deviceNameMin = deviceNameMin;
 }
+void HAMqttDiscoveryLight::setPayloadOn(String payloadOn)
+{
+	_payloadOn = payloadOn;
+}
+void HAMqttDiscoveryLight::setPayloadOff(String payloadOff)
+{
+	_payloadOff = payloadOff;
+}
 void HAMqttDiscoveryLight::setCommandOnTemplate(String commandOnTemplate)
 {
 	_commandOnTemplate = commandOnTemplate;
@@ -85,4 +95,8 @@ void HAMqttDiscoveryLight::setCommandOnTemplate(String commandOnTemplate)
 void HAMqttDiscoveryLight::setCommandOffTemplate(String commandOffTemplate)
 {
 	_commandOffTemplate = commandOffTemplate;
+}
+void HAMqttDiscoveryLight::setStateTemplate(String stateTemplate)
+{
+	_stateTemplate = stateTemplate;
 }
