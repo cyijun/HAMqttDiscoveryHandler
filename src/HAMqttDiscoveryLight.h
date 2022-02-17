@@ -17,9 +17,6 @@ public:
 	HAMqttDiscoveryLight(HAMqttDiscoveryHandler &deviceObj);
 	void construct();
 
-	String getMqttDiscoveryConfigTopic();
-	String getMqttDiscoveryMesg();
-
 	void setDeviceNameMin(String deviceNameMin);
 	void setCommandOnTemplate(String commandOnTemplate);
 	void setCommandOffTemplate(String commandOffTemplate);
@@ -32,8 +29,6 @@ private:
 
 	String _uniqueId;
 	String _entityName;
-	String _mqttDiscoveryConfigTopic;
-	String _mqttDiscoveryMesg;
 
 	String _deviceNameMin;
 

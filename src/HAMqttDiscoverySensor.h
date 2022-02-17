@@ -32,9 +32,6 @@ public:
 	HAMqttDiscoverySensor(HAMqttDiscoveryHandler &deviceObj, String stateClass, String deviceNameMin, String deviceClass, String unitOfMeasurement, String valueTemplate);
 	void construct();
 
-	String getMqttDiscoveryConfigTopic();
-	String getMqttDiscoveryMesg();
-
 	void setDeviceClass(String deviceClass);
 	void setStateClass(String stateClass);
 	void setUnitOfMeasurement(String unitOfMeasurement);
@@ -52,6 +49,4 @@ private:
 
 	String _uniqueId;
 	String _entityName;
-	String _mqttDiscoveryConfigTopic;
-	String _mqttDiscoveryMesg;
 };

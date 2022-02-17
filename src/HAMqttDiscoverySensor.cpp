@@ -77,20 +77,6 @@ void HAMqttDiscoverySensor::construct()
 	serializeJson(doc, _mqttDiscoveryMesg);
 }
 
-//********* Getters *********
-
-String HAMqttDiscoverySensor::getMqttDiscoveryConfigTopic()
-{
-	return _mqttDiscoveryConfigTopic;
-}
-
-String HAMqttDiscoverySensor::getMqttDiscoveryMesg()
-{
-	String mqttDiscoveryMesg = _mqttDiscoveryMesg;
-	_mqttDiscoveryMesg.clear();
-	return mqttDiscoveryMesg;
-}
-
 //********* Setters *********
 
 void HAMqttDiscoverySensor::setDeviceClass(String deviceClass)

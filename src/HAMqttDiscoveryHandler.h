@@ -37,6 +37,9 @@ public:
 	HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion);
 	HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, String viaDevice);
 
+	String getMqttDiscoveryConfigTopic();
+	String getMqttDiscoveryMesg();
+
 	String getPlatform();
 	String getDeviceName();
 	String getDeviceManufacturer();
@@ -47,7 +50,6 @@ public:
 	String getCtrlTopic();
 	String getStateTopic();
 	String getAvailabilityTopic();
-	String getFeedbackTopic();
 	String getMqttDiscoveryMesgBase();
 
 protected:
@@ -61,9 +63,10 @@ protected:
 	String _deviceId;
 	String _availabilityTopic;
 	String _stateTopic;
-	String _feedbackTopic;
 	String _ctrlTopic;
 	String _mqttDiscoveryMesgBase;
+	String _mqttDiscoveryConfigTopic;
+	String _mqttDiscoveryMesg;
 
 private:
 	String _cmdTopic;

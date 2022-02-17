@@ -39,7 +39,6 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_cmdTopic = _platform + "/" + _deviceName + "/cmd";
 	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
-	_feedbackTopic = _platform + "/" + _deviceName + "/fdbk";
 	_availabilityTopic = _platform + "/" + _deviceName + "/state";
 
 	DynamicJsonDocument doc(1024);
@@ -67,7 +66,6 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_cmdTopic = _platform + "/" + _deviceName + "/cmd";
 	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
-	_feedbackTopic = _platform + "/" + _deviceName + "/fdbk";
 	_availabilityTopic = _platform + "/" + _deviceName + "/state";
 
 	DynamicJsonDocument doc(1024);
@@ -83,6 +81,18 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 }
 
 //********* Getters *********
+
+String HAMqttDiscoveryHandler::getMqttDiscoveryConfigTopic()
+{
+	return _mqttDiscoveryConfigTopic;
+}
+
+String HAMqttDiscoveryHandler::getMqttDiscoveryMesg()
+{
+	String mqttDiscoveryMesg = _mqttDiscoveryMesg;
+	_mqttDiscoveryMesg.clear();
+	return mqttDiscoveryMesg;
+}
 
 String HAMqttDiscoveryHandler::getPlatform()
 {
@@ -128,11 +138,6 @@ String HAMqttDiscoveryHandler::getStateTopic()
 String HAMqttDiscoveryHandler::getAvailabilityTopic()
 {
 	return _availabilityTopic;
-}
-
-String HAMqttDiscoveryHandler::getFeedbackTopic()
-{
-	return _feedbackTopic;
 }
 String HAMqttDiscoveryHandler::getMqttDiscoveryMesgBase()
 {

@@ -21,7 +21,6 @@ HAMqttDiscoveryFan::HAMqttDiscoveryFan(HAMqttDiscoveryHandler &deviceObj)
 	_deviceId = deviceObj.getDeviceId();
 	_stateTopic = deviceObj.getStateTopic();
 	_availabilityTopic = deviceObj.getAvailabilityTopic();
-	_feedbackTopic = deviceObj.getFeedbackTopic();
 	_ctrlTopic = deviceObj.getCtrlTopic();
 	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 }
@@ -34,7 +33,7 @@ void HAMqttDiscoveryFan::construct()
 
 	DynamicJsonDocument doc(1024);
 	deserializeJson(doc, _mqttDiscoveryMesgBase);
-	doc[_JSON_ATTRIBUTES_TOPIC] = _feedbackTopic;
+	doc[_JSON_ATTRIBUTES_TOPIC] = _stateTopic;
 	doc[_NAME] = _entityName;
 	doc[_UNIQUE_ID] = _uniqueId;
 
@@ -77,42 +76,28 @@ void HAMqttDiscoveryFan::construct()
 
 	if (!_stateValueTemplate.isEmpty())
 	{
-		doc[_STATE_TOPIC] = _feedbackTopic;
+		doc[_STATE_TOPIC] = _stateTopic;
 		doc[_STATE_VALUE_TEMPLATE] = _stateValueTemplate;
 	}
 
 	if (!_oscillationValueTemplate.isEmpty())
 	{
-		doc[_OSCILLATION_STATE_TOPIC] = _feedbackTopic;
+		doc[_OSCILLATION_STATE_TOPIC] = _stateTopic;
 		doc[_OSCILLATION_VALUE_TEMPLATE] = _oscillationValueTemplate;
 	}
 	if (!_percentageValueTemplate.isEmpty())
 	{
-		doc[_PERCENTAGE_STATE_TOPIC] = _feedbackTopic;
+		doc[_PERCENTAGE_STATE_TOPIC] = _stateTopic;
 		doc[_PERCENTAGE_VALUE_TEMPLATE] = _percentageValueTemplate;
 	}
 
 	if (!_presetModeValueTemplate.isEmpty())
 	{
-		doc[_PERCENTAGE_STATE_TOPIC] = _feedbackTopic;
+		doc[_PERCENTAGE_STATE_TOPIC] = _stateTopic;
 		doc[_PRESET_MODE_VALUE_TEMPLATE] = _presetModeValueTemplate;
 	}
 
 	serializeJson(doc, _mqttDiscoveryMesg);
-}
-
-//********* Getters *********
-
-String HAMqttDiscoveryFan::getMqttDiscoveryConfigTopic()
-{
-	return _mqttDiscoveryConfigTopic;
-}
-
-String HAMqttDiscoveryFan::getMqttDiscoveryMesg()
-{
-	String mqttDiscoveryMesg = _mqttDiscoveryMesg;
-	_mqttDiscoveryMesg.clear();
-	return mqttDiscoveryMesg;
 }
 
 //******** Setters ********

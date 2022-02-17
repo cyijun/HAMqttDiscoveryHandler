@@ -1,17 +1,17 @@
 /**
- * @file HAMqttDiscoveryLight.cpp
+ * @file HAMqttDiscoverySwitch.cpp
  * @author Chen Yijun
  * @brief
  * @version 0.1
- * @date 2022-02-13
+ * @date 2022-02-16
  *
  * @copyright Copyright (c) 2022
  *
  */
 
-#include "HAMqttDiscoveryLight.h"
+#include "HAMqttDiscoverySwitch.h"
 
-HAMqttDiscoveryLight::HAMqttDiscoveryLight(HAMqttDiscoveryHandler &deviceObj)
+HAMqttDiscoverySwitch::HAMqttDiscoverySwitch(HAMqttDiscoveryHandler &deviceObj)
 {
 	_platform = deviceObj.getPlatform();
 	_deviceName = deviceObj.getDeviceName();
@@ -25,7 +25,7 @@ HAMqttDiscoveryLight::HAMqttDiscoveryLight(HAMqttDiscoveryHandler &deviceObj)
 	_mqttDiscoveryMesgBase = deviceObj.getMqttDiscoveryMesgBase();
 }
 
-void HAMqttDiscoveryLight::construct()
+void HAMqttDiscoverySwitch::construct()
 {
 	_uniqueId = _deviceName + "_" + _deviceNameMin + "_" + _platform;
 	_entityName = _deviceName + " " + _deviceNameMin;
@@ -38,11 +38,6 @@ void HAMqttDiscoveryLight::construct()
 	doc[_UNIQUE_ID] = _uniqueId;
 
 	doc[_COMMAND_TOPIC] = _ctrlTopic;
-	if (!_commandOnTemplate.isEmpty())
-	{
-		doc[_COMMAND_ON_TEMPLATE] = _commandOnTemplate;
-		doc[_COMMAND_OFF_TEMPLATE] = _commandOffTemplate;
-	}
 
 	if (!_payloadOn.isEmpty())
 	{
@@ -50,10 +45,10 @@ void HAMqttDiscoveryLight::construct()
 		doc[_PAYLOAD_OFF] = _payloadOff;
 	}
 
-	if (!_stateTemplate.isEmpty())
+	if (!_valueTemplate.isEmpty())
 	{
 		doc[_STATE_TOPIC] = _stateTopic;
-		doc[_STATE_TEMPLATE] = _stateTemplate;
+		doc[_VALUE_TEMPLATE] = _valueTemplate;
 	}
 
 	serializeJson(doc, _mqttDiscoveryMesg);
@@ -61,27 +56,19 @@ void HAMqttDiscoveryLight::construct()
 
 //********* Setters *********
 
-void HAMqttDiscoveryLight::setDeviceNameMin(String deviceNameMin)
+void HAMqttDiscoverySwitch::setDeviceNameMin(String deviceNameMin)
 {
 	_deviceNameMin = deviceNameMin;
 }
-void HAMqttDiscoveryLight::setPayloadOn(String payloadOn)
+void HAMqttDiscoverySwitch::setPayloadOn(String payloadOn)
 {
 	_payloadOn = payloadOn;
 }
-void HAMqttDiscoveryLight::setPayloadOff(String payloadOff)
+void HAMqttDiscoverySwitch::setPayloadOff(String payloadOff)
 {
 	_payloadOff = payloadOff;
 }
-void HAMqttDiscoveryLight::setCommandOnTemplate(String commandOnTemplate)
+void HAMqttDiscoverySwitch::setValueTemplate(String valueTemplate)
 {
-	_commandOnTemplate = commandOnTemplate;
-}
-void HAMqttDiscoveryLight::setCommandOffTemplate(String commandOffTemplate)
-{
-	_commandOffTemplate = commandOffTemplate;
-}
-void HAMqttDiscoveryLight::setStateTemplate(String stateTemplate)
-{
-	_stateTemplate = stateTemplate;
+	_valueTemplate = valueTemplate;
 }
