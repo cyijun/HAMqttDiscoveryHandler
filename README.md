@@ -20,7 +20,7 @@ An Arduino library that generates MQTT topics and messages for Home Assistant MQ
 - [x] LIGHT
 - [ ] LOCK
 - [x] SENSOR
-- [ ] SWITCH
+- [x] SWITCH
 - [ ] CLIMATE
 - [ ] VACUUM
 
