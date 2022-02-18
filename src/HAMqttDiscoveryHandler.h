@@ -35,7 +35,7 @@ class HAMqttDiscoveryHandler
 public:
 	HAMqttDiscoveryHandler();
 	HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion);
-	HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, String viaDevice);
+	HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, HAMqttDiscoveryHandler &deviceObj);
 
 	String getMqttDiscoveryConfigTopic();
 	String getMqttDiscoveryMesg();

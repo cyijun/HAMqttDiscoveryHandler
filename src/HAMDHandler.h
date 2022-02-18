@@ -27,4 +27,4 @@
 #include "HAMqttDiscoveryFan.h"
 #include "HAMqttDiscoveryLight.h"
 #include "HAMqttDiscoverySwitch.h"
-
+#include "HAMqttDiscoveryClimate.h"

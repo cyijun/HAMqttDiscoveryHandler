@@ -40,6 +40,7 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
 	_availabilityTopic = _platform + "/" + _deviceName + "/state";
+	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceId + "/config";
 
 	DynamicJsonDocument doc(1024);
 	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
@@ -52,7 +53,7 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	serializeJson(doc, _mqttDiscoveryMesgBase);
 }
 
-HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, String viaDevice)
+HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo, String deviceManufacturer, String deviceModel, String deviceSwVersion, HAMqttDiscoveryHandler &deviceObj)
 {
 	_platform = platform;
 	_platform.toLowerCase();
@@ -61,12 +62,13 @@ HAMqttDiscoveryHandler::HAMqttDiscoveryHandler(String platform, String serialNo,
 	_deviceManufacturer = deviceManufacturer;
 	_deviceModel = deviceModel;
 	_deviceSwVersion = deviceSwVersion;
-	_viaDevice = viaDevice;
+	_viaDevice = deviceObj.getDeviceId();
 	_deviceId = _platform + "_" + _deviceName;
-	_cmdTopic = _platform + "/" + _deviceName + "/cmd";
+	_cmdTopic = deviceObj.getCmdTopic();
 	_ctrlTopic = _platform + "/" + _deviceName + "/ctrl";
 	_stateTopic = _platform + "/" + _deviceName + "/attr";
-	_availabilityTopic = _platform + "/" + _deviceName + "/state";
+	_availabilityTopic = deviceObj.getAvailabilityTopic();
+	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceId + "/config";
 
 	DynamicJsonDocument doc(1024);
 	doc[_AVAILABILITY][0][_TOPIC] = _availabilityTopic;
