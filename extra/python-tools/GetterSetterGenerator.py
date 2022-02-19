@@ -1,12 +1,12 @@
 import linecache
 
 
-className = 'HAMqttDiscoveryFan'
-lineRange = [51, 54]
+className = 'HAMqttDiscoveryClimate'
+lineRange = [38, 46]
 
 needGetter = False
-needSetter = True
-needConstruct = False
+needSetter = False
+needConstruct = True
 
 
 def get_line_context(file_path, line_number):
@@ -19,15 +19,19 @@ fp = './'+className+'.h'
 paramList = []
 for line in range(lineRange[0], lineRange[1]+1):
     lineStr = get_line_context(fp, line)
-    paramList.append(lineStr[lineStr.find(' '):lineStr.find(';')])
+    if(lineStr.find(';')>=0):
+        paramList.append(lineStr[lineStr.find(' '):lineStr.find(';')])
 
 jsonKeyList = []
 for param in paramList:
-    for char in param:
+    key=param
+    for char in key:
         if str(char).isupper():
-            key = param.replace(str(char), '_'+str(char), 1)
-            key = key.upper()
-            jsonKeyList.append(key)
+            cutindex = key.find(str(char))
+            key = key[:cutindex]+'_'+str(char).lower()+key[cutindex+1:]
+    key = key.upper()
+    jsonKeyList.append(key)
+print(jsonKeyList)
 
 getterHeaderList = []
 setterHeaderList = []
@@ -70,3 +74,7 @@ if needSetter:
     for setterFunction in setterFunctionList:
         print(setterFunction)
     print()
+
+if needConstruct:
+    for i in range(0, rawList.__len__()):
+        print('if(!'+paramList[i]+'.isEmpty()){\n\tdoc['+jsonKeyList[i]+']='+paramList[i]+';\n\tdoc['+jsonKeyList[i].replace('TEMPLATE',"TOPIC")+']=_ctrlTopic;\n}')

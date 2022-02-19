@@ -27,7 +27,6 @@
 #include "Arduino.h"
 #include <ArduinoJson.h>
 
-//#include "HAJsonKeyAbbr.h"
 #include "HAJsonKey.h"
 
 class HAMqttDiscoveryHandler
