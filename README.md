@@ -1,4 +1,5 @@
 [![arduino-library-badge](https://www.ardu-badge.com/badge/HAMqttDiscoveryHandler.svg?)](https://www.ardu-badge.com/HAMqttDiscoveryHandler)
+[![Arduino Library CI](https://github.com/cyijun/HAMqttDiscoveryHandler/actions/workflows/githubci.yml/badge.svg)](https://github.com/cyijun/HAMqttDiscoveryHandler/actions/workflows/githubci.yml)
 
 # HAMqttDiscoveryHandler
 
