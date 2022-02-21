@@ -29,3 +29,4 @@ An Arduino library that generates MQTT topics and messages for Home Assistant MQ
 * v0.0.1: Sensor device type is ready and has been tested!
 * v0.1.0: Not crap any more.
 * v0.1.2: Add two more types. The fan supports most of the operations with feedback like on/off, oscillation percentage and preset mode. But light is too complex to finish in a short time. So the light can only be on or off currently.
+* v0.2.0: Finished and verified the climate type.
