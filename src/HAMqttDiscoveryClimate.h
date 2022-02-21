@@ -55,7 +55,7 @@ private:
 	String _modes[10];
 	String _swingModes[10];
 	String _fanModes[10];
-	float _maxTemp = 16;
-	float _minTemp = 31;
+	float _maxTemp = 31;
+	float _minTemp = 16;
 	String _temperatureUnit = "C";
 };

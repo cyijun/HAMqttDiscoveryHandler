@@ -31,7 +31,7 @@ void HAMqttDiscoveryClimate::construct()
 	_entityName = _deviceName + " " + _deviceNameMin;
 	_mqttDiscoveryConfigTopic = "homeassistant/" + _deviceType + "/" + _deviceName + "/" + _deviceNameMin + "/config";
 
-	DynamicJsonDocument doc(1024);
+	DynamicJsonDocument doc(2048);
 	deserializeJson(doc, _mqttDiscoveryMesgBase);
 	doc[_JSON_ATTRIBUTES_TOPIC] = _stateTopic;
 	doc[_NAME] = _entityName;
