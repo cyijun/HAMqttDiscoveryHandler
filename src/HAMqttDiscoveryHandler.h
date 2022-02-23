@@ -48,7 +48,7 @@ public:
 	String getCmdTopic();
 	String getCtrlTopic();
 	String getStateTopic();
-	String getAvailabilityTopic();
+	const char* getAvailabilityTopic();
 	String getMqttDiscoveryMesgBase();
 
 protected:
