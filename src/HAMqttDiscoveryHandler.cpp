@@ -137,9 +137,9 @@ String HAMqttDiscoveryHandler::getStateTopic()
 	return _stateTopic;
 }
 
-const char* HAMqttDiscoveryHandler::getAvailabilityTopic()
+String HAMqttDiscoveryHandler::getAvailabilityTopic()
 {
-	return _availabilityTopic.c_str();
+	return _availabilityTopic;
 }
 String HAMqttDiscoveryHandler::getMqttDiscoveryMesgBase()
 {
